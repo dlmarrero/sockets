@@ -78,11 +78,16 @@ int main(int argc, char *argv[])
 	
 	// Connect to server
 	if ((connect(sockfd, (struct sockaddr *) &servinfo, sizeof(servinfo)) == -1)) {
-		fprintf(stderr, "Could not connect to server\n");
+		perror("connect");
 		exit(1);
 	}
 	
-	
+	// Receive data from server
+	char rcvd[128];
+	recv(sockfd, rcvd, sizeof(rcvd), 0);
+
+	// Print received message
+	printf("Server says: %s", rcvd);	
 
 	return 0;
 }
