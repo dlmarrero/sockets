@@ -74,6 +74,15 @@ int main(int argc, char *argv[])
 	struct sockaddr_in servinfo;
 	servinfo.sin_family = AF_INET;
 	servinfo.sin_port = htons(port); // Convert port to network byte order	
+	servinfo.sin_addr.s_addr = *netaddr;
 	
+	// Connect to server
+	if ((connect(sockfd, (struct sockaddr *) &servinfo, sizeof(servinfo)) == -1)) {
+		fprintf(stderr, "Could not connect to server\n");
+		exit(1);
+	}
+	
+	
+
 	return 0;
 }
