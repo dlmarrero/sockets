@@ -81,6 +81,10 @@ int main(int argc, char *argv[])
 		perror("connect");
 		exit(1);
 	}
+
+	// Send message to the server
+	char mymsg[] = "This is super cool!";
+	send(sockfd, mymsg, sizeof(mymsg), 0);
 	
 	// Receive data from server
 	char rcvd[128];
